@@ -6,6 +6,7 @@
 //  Copyright __MyCompanyName__ 2012. All rights reserved.
 //
 
+#import "CCNode+SFGestureRecognizers.h"
 
 // Import the interfaces
 #import "HelloWorldLayer.h"
@@ -14,6 +15,8 @@
 #import "AppDelegate.h"
 
 #pragma mark - HelloWorldLayer
+
+static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKey";
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -58,7 +61,7 @@
 		//
 		// Leaderboards and Achievements
 		//
-		
+		/*
 		// Default font size will be 28 points.
 		[CCMenuItemFont setFontSize:28];
 		
@@ -99,9 +102,34 @@
 		
 		// Add the menu to the layer
 		[self addChild:menu];
-
+*/
+        [self initAndAddTileMap:@"without_texel_fix.tmx"];
+        [self addGestureRecognizers];
 	}
 	return self;
+}
+
+- (void)initAndAddTileMap:(NSString *)tilemapName
+{
+    CCTMXTiledMap *tilemap = [CCTMXTiledMap tiledMapWithTMXFile:tilemapName];
+    [self addChild:tilemap];
+}
+
+-(void)addGestureRecognizers
+{
+    self.isTouchEnabled = YES;
+    
+    //! pan gesture recognizer
+    UIGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    panGestureRecognizer.delegate = self;
+    [self addGestureRecognizer:panGestureRecognizer];
+    [panGestureRecognizer release];
+    
+    //! pinch gesture recognizer
+    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
+    [self addGestureRecognizer:pinchGestureRecognizer];
+    pinchGestureRecognizer.delegate = self;
+    [pinchGestureRecognizer release];
 }
 
 // on "dealloc" you need to release all your retained objects
@@ -127,5 +155,48 @@
 {
 	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - GestureRecognizer delegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    //! For swipe gesture recognizer we want it to be executed only if it occurs on the main layer, not any of the subnodes ( main layer is higher in hierarchy than children so it will be receiving touch by default )
+    if ([gestureRecognizer class] == [UISwipeGestureRecognizer class]) {
+        CGPoint pt = [touch locationInView:touch.view];
+        pt = [[CCDirector sharedDirector] convertToGL:pt];
+        
+        for (CCNode *child in self.children) {
+            if ([child isNodeInTreeTouched:pt]) {
+                return NO;
+            }
+        }
+    }
+    
+    return YES;
+}
+
+- (void)handlePanGesture:(UIPanGestureRecognizer*)aPanGestureRecognizer
+{
+    CCNode *node = aPanGestureRecognizer.node;
+    CGPoint translation = [aPanGestureRecognizer translationInView:aPanGestureRecognizer.view];
+    translation.y *= -1;
+    [aPanGestureRecognizer setTranslation:CGPointZero inView:aPanGestureRecognizer.view];
+    
+    node.position = ccpAdd(node.position, translation);
+}
+
+- (void)handlePinchGesture:(UIPinchGestureRecognizer*)aPinchGestureRecognizer
+{
+    if (aPinchGestureRecognizer.state == UIGestureRecognizerStateBegan || aPinchGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        CCNode *node = aPinchGestureRecognizer.node;
+        float scale = [aPinchGestureRecognizer scale];
+        node.scale *= scale;
+        aPinchGestureRecognizer.scale = 1;
+    }
 }
 @end

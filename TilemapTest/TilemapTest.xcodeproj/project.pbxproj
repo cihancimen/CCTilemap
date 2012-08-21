@@ -133,6 +133,13 @@
 		CF6FA32515E3F5BE00BC236E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FA32415E3F5BE00BC236E /* AppDelegate.m */; };
 		CF6FA32815E3F5BE00BC236E /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FA32715E3F5BE00BC236E /* HelloWorldLayer.m */; };
 		CF6FA32B15E3F5BE00BC236E /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FA32A15E3F5BE00BC236E /* IntroLayer.m */; };
+		CF6FA34715E3F9EE00BC236E /* table-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF6FA34115E3F9EE00BC236E /* table-hd.plist */; };
+		CF6FA34815E3F9EE00BC236E /* table-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = CF6FA34215E3F9EE00BC236E /* table-hd.png */; };
+		CF6FA34915E3F9EE00BC236E /* table.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF6FA34315E3F9EE00BC236E /* table.plist */; };
+		CF6FA34A15E3F9EE00BC236E /* table.png in Resources */ = {isa = PBXBuildFile; fileRef = CF6FA34415E3F9EE00BC236E /* table.png */; };
+		CF6FA34B15E3F9EE00BC236E /* table.tps in Resources */ = {isa = PBXBuildFile; fileRef = CF6FA34515E3F9EE00BC236E /* table.tps */; };
+		CF6FA34C15E3F9EE00BC236E /* without_texel_fix-hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = CF6FA34615E3F9EE00BC236E /* without_texel_fix-hd.tmx */; };
+		CF6FA35015E400E200BC236E /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6FA34F15E400E200BC236E /* CCNode+SFGestureRecognizers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -398,6 +405,14 @@
 		CF6FA32715E3F5BE00BC236E /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		CF6FA32915E3F5BE00BC236E /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		CF6FA32A15E3F5BE00BC236E /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		CF6FA34115E3F9EE00BC236E /* table-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "table-hd.plist"; sourceTree = "<group>"; };
+		CF6FA34215E3F9EE00BC236E /* table-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-hd.png"; sourceTree = "<group>"; };
+		CF6FA34315E3F9EE00BC236E /* table.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = table.plist; sourceTree = "<group>"; };
+		CF6FA34415E3F9EE00BC236E /* table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table.png; sourceTree = "<group>"; };
+		CF6FA34515E3F9EE00BC236E /* table.tps */ = {isa = PBXFileReference; lastKnownFileType = file; path = table.tps; sourceTree = "<group>"; };
+		CF6FA34615E3F9EE00BC236E /* without_texel_fix-hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "without_texel_fix-hd.tmx"; sourceTree = "<group>"; };
+		CF6FA34E15E400E200BC236E /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
+		CF6FA34F15E400E200BC236E /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +487,8 @@
 		CF6FA1AC15E3F5BB00BC236E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF6FA33F15E3F9EE00BC236E /* texel_fix */,
+				CF6FA34015E3F9EE00BC236E /* without_texel_fix */,
 				CF6FA1AD15E3F5BB00BC236E /* Default.png */,
 				CF6FA1AF15E3F5BB00BC236E /* Default-Landscape~ipad.png */,
 				CF6FA1B115E3F5BC00BC236E /* fps_images.png */,
@@ -492,6 +509,7 @@
 		CF6FA1C615E3F5BC00BC236E /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				CF6FA34D15E400E200BC236E /* CCNode+SFGestureRecognizers */,
 				CF6FA2DD15E3F5BE00BC236E /* LICENSE_cocos2d.txt */,
 				CF6FA2EC15E3F5BE00BC236E /* LICENSE_CocosDenshion.txt */,
 				CF6FA31E15E3F5BE00BC236E /* LICENSE_Kazmath.txt */,
@@ -832,6 +850,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CF6FA33F15E3F9EE00BC236E /* texel_fix */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = texel_fix;
+			path = Resources/texel_fix;
+			sourceTree = "<group>";
+		};
+		CF6FA34015E3F9EE00BC236E /* without_texel_fix */ = {
+			isa = PBXGroup;
+			children = (
+				CF6FA34115E3F9EE00BC236E /* table-hd.plist */,
+				CF6FA34215E3F9EE00BC236E /* table-hd.png */,
+				CF6FA34315E3F9EE00BC236E /* table.plist */,
+				CF6FA34415E3F9EE00BC236E /* table.png */,
+				CF6FA34515E3F9EE00BC236E /* table.tps */,
+				CF6FA34615E3F9EE00BC236E /* without_texel_fix-hd.tmx */,
+			);
+			name = without_texel_fix;
+			path = Resources/without_texel_fix;
+			sourceTree = "<group>";
+		};
+		CF6FA34D15E400E200BC236E /* CCNode+SFGestureRecognizers */ = {
+			isa = PBXGroup;
+			children = (
+				CF6FA34E15E400E200BC236E /* CCNode+SFGestureRecognizers.h */,
+				CF6FA34F15E400E200BC236E /* CCNode+SFGestureRecognizers.m */,
+			);
+			name = "CCNode+SFGestureRecognizers";
+			path = "libs/CCNode+SFGestureRecognizers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -895,6 +945,12 @@
 				CF6FA1C215E3F5BC00BC236E /* Icon@2x.png in Resources */,
 				CF6FA1C515E3F5BC00BC236E /* iTunesArtwork in Resources */,
 				CF6FA30315E3F5BE00BC236E /* ChangeLog in Resources */,
+				CF6FA34715E3F9EE00BC236E /* table-hd.plist in Resources */,
+				CF6FA34815E3F9EE00BC236E /* table-hd.png in Resources */,
+				CF6FA34915E3F9EE00BC236E /* table.plist in Resources */,
+				CF6FA34A15E3F9EE00BC236E /* table.png in Resources */,
+				CF6FA34B15E3F9EE00BC236E /* table.tps in Resources */,
+				CF6FA34C15E3F9EE00BC236E /* without_texel_fix-hd.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,6 +1065,7 @@
 				CF6FA32515E3F5BE00BC236E /* AppDelegate.m in Sources */,
 				CF6FA32815E3F5BE00BC236E /* HelloWorldLayer.m in Sources */,
 				CF6FA32B15E3F5BE00BC236E /* IntroLayer.m in Sources */,
+				CF6FA35015E400E200BC236E /* CCNode+SFGestureRecognizers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
